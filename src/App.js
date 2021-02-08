@@ -5,8 +5,6 @@ import LyricsCard from './components/LyricsCard';
 import Form from './components/Form';
 import { useState, useRef } from 'react';
 
-// TESTING33333333!!!!!!!!!!!!!!!!!!!!!!!
-
 function App() {
   // const [data, setData] = useState(undefined);
   const listRef = useRef([]);

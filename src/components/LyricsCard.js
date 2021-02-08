@@ -7,17 +7,7 @@ function LyricsCard(props) {
   const [clicked, setClick] = useState(false);
   const [alreadyClicked, setAlreadyClicked] = useState(false);
 
-  // function fetchLyrics() {
-  //   const cardID = props.id;
-  //   console.log(clicked);
-  //   if (clicked && !alreadyClicked) {
-  //     fetch(`https://api.lyrics.ovh/v1/${props.artist}/${props.title}`)
-  //       .then(res => res.json())
-  //       .then(data => props.getLyrics(cardID, data));
-  //     // console.log(data);
-  //     setAlreadyClicked(true);
-  //   }
-  // }
+
   useEffect(() => {
     const cardID = props.id;
     console.log(clicked);
@@ -36,16 +26,7 @@ function LyricsCard(props) {
     setClick(!clicked);
     // fetchLyrics();
   }
-  // setWords(data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>'))
-  // async function handleClick(e) {
-  //   e.preventDefault();
-  //   const res = await fetch(
-  //     `https://api.lyrics.ovh/v1/${props.artist}/${props.song}`
-  //   );
-  //   const data = await res.json();
-  //   const dataTransformed = data.lyrics.replace(/(\r\n|\r|\n)/g, '<br>');
-  //   setLyrics(dataTransformed);
-  // }
+
 
   return (
     <Card>
