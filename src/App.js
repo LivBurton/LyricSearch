@@ -3,26 +3,16 @@ import 'bootstrap/dist/css/bootstrap.css';
 import { Accordion } from 'react-bootstrap';
 import LyricsCard from './components/LyricsCard';
 import Form from './components/Form';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 // TESTING33333333!!!!!!!!!!!!!!!!!!!!!!!
 
 function App() {
   // const [data, setData] = useState(undefined);
-  const [cardList, setCardList] = useState([]);
-  // const cardList = props.data.map(item => (
-  //   <LyricsCard
-  //     id={item.id}
-  //     key={item.id}
-  //     artist={item.artist}
-  //     title={item.title}
-  //     lyrics={item.lyrics}
-  //   />
-  // ));
-  // pass as prop to Form which will pass in the data from the API fetch
-  function getData(info) {
-    // setData(info);
+  const listRef = useRef([]);
+  const [cardList, setCardList] = useState(listRef.current);
 
+  function getData(info) {
     const list = info.data.map(item => (
       <LyricsCard
         id={item.id}
@@ -34,26 +24,31 @@ function App() {
       />
     ));
 
+    listRef.current = list;
+    console.log(listRef.current);
     setCardList(list);
-    console.log(list);
+    console.log(cardList);
   }
 
   function getLyrics(id, words) {
-    console.log(cardList);
+    console.log(listRef.current);
     console.log(words.lyrics, id);
-    const addLyrics = cardList.map(card => {
-      console.log(card.id, card.lyrics);
-      if (id === card.id) {
-        // return { ...card, lyrics: words.lyrics };
-        // console.log(card.id, card.lyrics);
+    const currentList = listRef.current;
+    const addLyrics = currentList.map(card => {
+      console.log(card.props.id, card.props.lyrics);
+      if (id === card.props.id) {
+        return { ...card, lyrics: words.lyrics };
       }
-
+      console.log(card.props.id, card.props.lyrics);
       return card;
     });
+    console.log(addLyrics);
+    // setCardList(addLyrics);
+    listRef.current = addLyrics;
+    console.log(listRef.current);
+    setCardList(listRef.current);
 
-    setCardList(addLyrics);
-
-    // console.log(cardList);
+    console.log(cardList);
     // pass in the id of the card and loop through. If matches
   }
 
